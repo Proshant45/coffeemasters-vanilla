@@ -18,7 +18,7 @@ const Router = {
         
         },
     go: (route, addToHistory = true) => {  
-        console.log(route);
+        
         if(addToHistory) {
             history.pushState({route}, null, route);
         }
@@ -26,26 +26,20 @@ const Router = {
         let pageElement = null;
         switch(route){
             case "/":
-                pageElement = document.createElement('h1');
-                pageElement.textContent = "Home";
-                console.log(pageElement);
+                pageElement = document.createElement('menu-page');
                 break;
 
             case "/order":
-                pageElement = document.createElement('h1');
-                pageElement.textContent = " Here is Your Order";
-                console.log(pageElement);
+                pageElement = document.createElement('order-page');
                 break;
             
             default:
                 if(route.startsWith("/product-")){
-                    pageElement = document.createElement('h1');
-                    pageElement.textContent = " Details";
+                    pageElement = document.createElement('details-page');
                     pageElement.dataset.productId = route.substring(route.lastIndexOf("-")+1);
                 }
 
         }
-
         if(pageElement){
             const cache = document.querySelector("main")
             cache.innerHTML = "";
