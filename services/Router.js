@@ -37,6 +37,7 @@ const Router = {
                 if(route.startsWith("/product-")){
                     pageElement = document.createElement('details-page');
                     pageElement.dataset.productId = route.substring(route.lastIndexOf("-")+1);
+                    
                 }
 
         }

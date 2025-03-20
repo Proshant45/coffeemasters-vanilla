@@ -20,30 +20,33 @@ export class MenuPage extends HTMLElement {
         const content = template.content.cloneNode(true);
         this.root.appendChild(content);
 
-        window.addEventListener('appMenuChanged', event => {
+        window.addEventListener('appMenuChanged', () => {
             this.render();
         });
     }
 
     render() {
         if(app.Store.menu){
+            this.root.querySelector('#menu').innerHTML = '';
             for(let category of app.Store.menu){
                 const liCategory = document.createElement('li');
                 liCategory.innerHTML = `
                 <h3>${category.name}</h3>
-                <ul class="category"> 
-        
-                </ul>`;
+                <ul class = 'category'> 
+                </ul>
+                `;
                 this.root.querySelector('#menu').appendChild(liCategory);
                 
-                category.products.array.forEach(product => {
-                   const item = document.createElement('product-item');
-                   item.dataset.product = JSON.stringify(product);
-                });
+               category.products.forEach(product => {
+                const item = document.createElement('product-item');
+                item.dataset.product = JSON.stringify(product);
+                liCategory.querySelector('ul').appendChild(item);
+                
+               });
             };
         }
             else{
-            this.root.querySelector('#menu').innerHTML = "Loading...";
+            this.root.querySelector('#menu').innerHTML = 'Loading...';
             
         }
     }
