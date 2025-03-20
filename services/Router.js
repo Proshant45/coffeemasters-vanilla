@@ -8,7 +8,7 @@ const Router = {
                 Router.go(url);
             })
             window.addEventListener('popstate', event => {
-                console.log(event.state.route);
+
                 Router.go(event.state.route, false);
             })
         
@@ -37,6 +37,7 @@ const Router = {
                 if(route.startsWith("/product-")){
                     pageElement = document.createElement('details-page');
                     pageElement.dataset.productId = route.substring(route.lastIndexOf("-")+1);
+                    
                 }
 
         }
